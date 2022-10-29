@@ -11,6 +11,32 @@ on:
     - master
 
 jobs:
+  test-GITHUB_ENV:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "VAR1=VALUE1" >> $GITHUB_ENV
+    - run: |
+        echo "env.VAR1: ${{ env.VAR1 }}"
+
+  test-GITHUB_OUTPUT:
+    runs-on: ubuntu-latest
+    outputs:
+      VAR2: ${{ steps.savestate.outputs.VAR2 }}
+    steps:
+    - id: savestate
+      run: |
+        echo "VAR2=VALUE2" >> $GITHUB_OUTPUT
+    - run: |
+        echo "steps.savestate.outputs.VAR2: ${{ steps.savestate.outputs.VAR2 }}"
+
+  test-needs-GITHUB_OUTPUT:
+    needs: [test-GITHUB_OUTPUT]
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "needs.test-GITHUB_OUTPUT.outputs.VAR2: ${{ needs.test-GITHUB_OUTPUT.outputs.VAR2 }}"
+
   build:
     runs-on: ubuntu-latest
     steps:
