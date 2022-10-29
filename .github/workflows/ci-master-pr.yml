@@ -63,10 +63,12 @@ jobs:
         files: |
           bin/*
 
-  github-example-tags:
+  github-ref-and-tag-example:
     runs-on: ubuntu-latest
     steps:
-     - name: GitHub Tag Name example
+     - name: GitHub Ref and Tag example
        run: |
+         echo "Ref from GITHUB_REF: $GITHUB_REF"
+         echo "Ref from github.ref: ${{ github.ref }}"
          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+         echo "Tag name from github.ref_name: ${{ github.ref_name }}"
