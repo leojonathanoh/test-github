@@ -44,11 +44,26 @@ jobs:
     - run: |
         mkdir -p release-v1.2.3-23-g60ee190
         echo 1 > release-v1.2.3-23-g60ee190/app-linux-amd64-v1.2.3-23-g60ee190.tgz
+        echo 1 > release-v1.2.3-23-g60ee190/app-linux-amd64-v1.2.3-23-g60ee190.tgz.sha512
     - uses: actions/upload-artifact@v3
       with:
         name: binaries
         path: |
           release*/*
+
+  download-artifact:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        set -eu
+        ls -al
+        ls -al release*
+    - uses: actions/download-artifact@v3
+      with:
+        name: binaries
+        path: |
+          release
 
   update-draft-release:
     runs-on: ubuntu-latest
