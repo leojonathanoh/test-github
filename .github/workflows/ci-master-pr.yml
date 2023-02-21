@@ -48,7 +48,7 @@ jobs:
       with:
         name: binaries
         path: |
-          **/*.tgz
+          release**/
 
   update-draft-release:
     runs-on: ubuntu-latest
