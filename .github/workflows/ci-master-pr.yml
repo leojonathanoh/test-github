@@ -42,13 +42,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: |
-        mkdir -p bin
-        echo 123 > bin/mybin
+        mkdir -p release-v1.2.3-23-g60ee190
+        touch release-v1.2.3-23-g60ee190/app-linux-amd64-v1.2.3-23-g60ee190.tgz
     - uses: actions/upload-artifact@v3
       with:
         name: binaries
         path: |
-          bin/*
+          /release*/*.tgz
 
   update-draft-release:
     runs-on: ubuntu-latest
