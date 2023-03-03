@@ -29,11 +29,13 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            # ${{ github.repository }}
+            ${{ github.repository }}
             ghcr.io/${{ github.repository }}
           tags: |
+            # On pr. E.g. 'pr-123', 'pr-123-abc0123'
             type=ref,event=pr
-            # On main. E.g. main-abc01234
+            type=ref,suffix=-{{sha}},event=pr
+            # On main. E.g. main-abc0123
             type=ref,suffix=-{{sha}},event=branch
             # On tags. E.g. 'v0', 'v0.0', 'v0.0.0', and 'latest'
             type=semver,pattern=v{{major}}
@@ -56,11 +58,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      # - name: Login to Docker Hub registry
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to Docker Hub registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
