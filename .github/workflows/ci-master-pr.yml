@@ -95,9 +95,3 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - name: List docker images
-        run: docker images
-
-      - name: Clean-up
-        run: docker logout
-        if: always()
