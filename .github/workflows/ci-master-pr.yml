@@ -25,16 +25,8 @@ jobs:
           images: |
             name/app
             name2/app
-      -
-        name: Docker meta
-        id: meta2
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            name/app
-            name2/app
           tags: |
-            type=edge,branch=master
+            type=raw,value={{branch}}-{{sha}}
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
