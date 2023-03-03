@@ -18,6 +18,16 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
+        name: Docker meta (PRs)
+        id: meta-pr
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            name/app
+            name2/app
+          tags: |
+            type=raw,value={{base_ref}}-{{sha}}
+      -
         name: Docker meta (main)
         id: meta-main
         uses: docker/metadata-action@v4
