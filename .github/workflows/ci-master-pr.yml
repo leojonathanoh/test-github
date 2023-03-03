@@ -12,6 +12,8 @@ on:
 permissions:
   contents: read
   packages: write
+  # This is required for requesting the JWT (need for cosign)
+  id-token: write
 
 jobs:
   docker:
