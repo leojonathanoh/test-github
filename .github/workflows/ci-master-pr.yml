@@ -36,7 +36,7 @@ jobs:
             name/app
             name2/app
           tags: |
-            type=raw,value={{branch}}-{{sha}}
+            type=ref,suffix={{sha}},event=branch
       -
         name: Docker meta (release)
         id: meta-release
