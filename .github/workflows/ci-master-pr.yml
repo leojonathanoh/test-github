@@ -30,8 +30,8 @@ jobs:
             type=ref,event=pr
             # On main. E.g. main-abc01234
             type=ref,suffix=-{{sha}},event=branch
-            # On tags. E.g. 'v0', 'v0.0', 'v0.0.0'
-            type=semver,pattern={{major}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}.{{minor}}.{{patch}}
+            # On tags. E.g. 'v0', 'v0.0', 'v0.0.0', and 'latest'
+            type=semver,pattern=v{{major}}
+            type=semver,pattern=v{{major}}.{{minor}}
+            type=semver,pattern=v{{major}}.{{minor}}.{{patch}}
 
