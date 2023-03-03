@@ -26,7 +26,7 @@ jobs:
             name/app
             name2/app
           tags: |
-            type=raw,value={{base_ref}}-{{sha}}
+            type=ref,event=pr
       -
         name: Docker meta (main)
         id: meta-main
