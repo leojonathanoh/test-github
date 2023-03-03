@@ -73,6 +73,7 @@ jobs:
         uses: sigstore/cosign-installer@c3667d99424e7e6047999fb6246c0da843953c65 # v3.0.1
 
       - name: Build and push
+        id: build-and-push
         uses: docker/build-push-action@v3
         with:
           context: '.'
