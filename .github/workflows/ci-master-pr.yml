@@ -18,26 +18,6 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Docker meta (PRs)
-        id: meta-pr
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            name/app
-            name2/app
-          tags: |
-            type=ref,event=pr
-      -
-        name: Docker meta (main)
-        id: meta-main
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            name/app
-            name2/app
-          tags: |
-            type=ref,suffix={{sha}},event=branch
-      -
         name: Docker meta (release)
         id: meta-release
         uses: docker/metadata-action@v4
@@ -46,6 +26,11 @@ jobs:
             name/app
             name2/app
           tags: |
+            # TODO: Remove this before merging PR
+            type=ref,event=pr
+            # On main. E.g. main-abc01234
+            type=ref,suffix=-{{sha}},event=branch
+            # On tags. E.g. 'v0', 'v0.0', 'v0.0.0'
             type=semver,pattern={{major}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
