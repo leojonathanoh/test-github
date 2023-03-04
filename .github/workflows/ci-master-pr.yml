@@ -39,10 +39,8 @@ jobs:
             type=ref,suffix=-{{sha}},event=branch
             type=semver,pattern=v{{major}}
             type=semver,pattern=v{{major}}.{{minor}}
-            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},latest=true
-            type=semver,pattern=v{{major}}.{{minor}}.{{patch}}-{{sha}}
-          flavor: |
-            latest=false
+            type=semver,pattern=v{{major}}.{{minor}}.{{patch}}
+            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix=-{{sha}}
 
       # See: https://github.com/docker/build-push-action/blob/v2.6.1/docs/advanced/cache.md#github-cache
       - name: Set up QEMU
