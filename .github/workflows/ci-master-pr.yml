@@ -126,5 +126,5 @@ jobs:
             type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=pr
             type=ref,suffix=-${{ matrix.variant }},event=branch
             type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=branch
-            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix=-${{ matrix.variant }}
-            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix={{sha}}-${{ matrix.variant }}
+            type=ref,suffix=-${{ matrix.variant }},event=tag
+            type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=tag
