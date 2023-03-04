@@ -100,7 +100,7 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  docker2:
+  docker-meta:
     strategy:
       matrix:
         variant:
