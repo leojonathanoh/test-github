@@ -2,7 +2,7 @@ name: docker
 on:
   push:
     branches:
-      - master
+      - test-docker
     tags:
       - '**'
   pull_request:
@@ -36,6 +36,7 @@ jobs:
           tags: |
             type=ref,event=pr
             type=ref,suffix=-{{sha}},event=pr
+            type=ref,event=branch
             type=ref,suffix=-{{sha}},event=branch
             type=semver,pattern=v{{major}}
             type=semver,pattern=v{{major}}.{{minor}}
@@ -113,9 +114,9 @@ jobs:
           images: |
             ${{ github.repository }}
             ghcr.io/${{ github.repository }}
-          # On pr. E.g. 'pr-123-<variant>', 'pr-123-abc0123-<variant>'
-          # On master. E.g. 'master-<variant>', 'master-abc0123-<variant>'
-          # On tags. E.g.'v0.0.0-<variant>', 'v0.0.0-<sha>-<variant>'
+          # type=ref,event=pr generates tag(s) on PRs only. E.g. 'pr-123-<variant>', 'pr-123-abc0123-<variant>'
+          # type=ref,event=branch generates tag(s) on branch only. E.g. 'master-<variant>', 'master-abc0123-<variant>'
+          # type=semver generates tag(s) on tags only. E.g.'v0.0.0-<variant>', 'v0.0.0-abc0123-<variant>'
           tags: |
             type=ref,suffix=-${{ matrix.variant }},event=pr
             type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=pr
