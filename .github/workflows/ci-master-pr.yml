@@ -24,8 +24,8 @@ jobs:
         uses: actions/checkout@v3
 
       # This step generates the docker tags (simple)
-      - name: Docker meta (simple)
-        id: meta-simple
+      - name: Docker meta
+        id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
@@ -43,8 +43,8 @@ jobs:
             type=ref,suffix=-{{sha}},event=tag
 
       # This step generates the docker tags
-      - name: Docker meta
-        id: meta
+      - name: Docker meta (advanced)
+        id: meta-advanced
         uses: docker/metadata-action@v4
         with:
           images: |
