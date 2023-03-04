@@ -100,3 +100,31 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
+  docker2:
+    strategy:
+      matrix:
+        variant:
+          - hello-world
+          - foo-bar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker meta 2
+        id: meta2
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ github.repository }}
+            ghcr.io/${{ github.repository }}
+          # Disable 'latest' tag
+          flavor: |
+            latest=false
+          # On pr. E.g. 'pr-123-<variant>', 'pr-123-abc0123-<variant>'
+          # On master. E.g. 'master-<variant>', 'master-abc0123-<variant>'
+          # On tags. E.g.'v0.0.0-<variant>', 'v0.0.0-<sha>-<variant>'
+          tags: |
+            type=ref,suffix=-${{ matrix.variant }},event=pr
+            type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=pr
+            type=ref,suffix=-${{ matrix.variant }},event=branch
+            type=ref,suffix=-{{sha}}-${{ matrix.variant }},event=branch
+            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix=-${{ matrix.variant }}
+            type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix={{sha}}-${{ matrix.variant }}
