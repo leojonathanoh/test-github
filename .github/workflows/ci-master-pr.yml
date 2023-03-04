@@ -12,7 +12,8 @@ on:
 permissions:
   contents: read
   packages: write
-  # This is required for requesting the JWT (need for cosign)
+  # This is required for ACTIONS_ID_TOKEN_REQUEST_TOKEN to be available (needed for cosign)
+  # See: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#adding-permissions-settings
   id-token: write
 
 jobs:
