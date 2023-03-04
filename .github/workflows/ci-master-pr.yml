@@ -108,8 +108,8 @@ jobs:
           - foo-bar
     runs-on: ubuntu-latest
     steps:
-      - name: Docker meta 2
-        id: meta2
+      - name: Docker meta
+        id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
