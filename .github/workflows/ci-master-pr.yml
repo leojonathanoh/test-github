@@ -89,7 +89,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
       - name: Sign the published Docker image
-        if: false # Remove this line to enable signing
+        if: true # Remove this line to enable signing
         run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign --yes {}@${{ steps.build-and-push.outputs.digest }}
 
       # Temp fix
