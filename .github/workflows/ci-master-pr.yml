@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # This step generates the docker tags (simple)
+      # This step generates the docker tags
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
