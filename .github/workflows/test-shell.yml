@@ -18,9 +18,6 @@ jobs:
     - name: Test
       run: |
         set -eu
-        pwd
-        ls -al
-        echo 1
         ./build.sh
         ./test.sh
     - name: Test
