@@ -1,4 +1,4 @@
-name: ci-master-pr
+name: test-shell
 
 on:
   push:
@@ -14,7 +14,8 @@ jobs:
   shell:
     runs-on: ubuntu-latest
     steps:
-    - run:
+    - name: Test
+      run:
         set -a
         ./build.sh
         ./test.sh
