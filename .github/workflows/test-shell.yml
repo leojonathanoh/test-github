@@ -20,3 +20,6 @@ jobs:
         echo 1
         ./build.sh
         ./test.sh
+    - name: Test
+      run:
+        echo Hello world
