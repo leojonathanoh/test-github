@@ -17,6 +17,7 @@ jobs:
     - name: Test
       run: |
         set -eu
+        ls -al
         echo 1
         ./build.sh
         ./test.sh
