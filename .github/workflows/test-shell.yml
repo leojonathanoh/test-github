@@ -17,9 +17,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Test
       run: |
-        set -eu
         ./build.sh
-        ./test.sh
     - name: Test
       run: |
-        echo Hello world
+        ./test.sh
