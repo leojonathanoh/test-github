@@ -1,4 +1,5 @@
 #!/bin/sh
-set -eu
+set -eux
 ls -al
 . artifact.env
+cat artifact.env
