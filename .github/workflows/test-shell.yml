@@ -17,5 +17,6 @@ jobs:
     - name: Test
       run:
         set -a
+        echo 1
         ./build.sh
         ./test.sh
