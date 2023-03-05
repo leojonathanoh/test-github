@@ -18,3 +18,4 @@ jobs:
         set -eu
         echo 'a=123' > artifact.env
         . artifact.env
+        ./test.sh
