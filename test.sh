@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -eux
 pwd
 ls -al
-. artifact.env
+. ./artifact.env
 cat artifact.env
