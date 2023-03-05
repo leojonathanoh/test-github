@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run:
-        set -eu
-        echo 'a=123' > artifact.env
-        . artifact.env
+        set -a
+        ./build.sh
         ./test.sh
