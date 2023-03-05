@@ -21,5 +21,5 @@ jobs:
         ./build.sh
         ./test.sh
     - name: Test
-      run:
+      run: |
         echo Hello world
