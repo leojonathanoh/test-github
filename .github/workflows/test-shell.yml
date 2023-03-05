@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Test
       run:
-        set -a
+        set -eu
         echo 1
         ./build.sh
         ./test.sh
