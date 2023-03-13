@@ -45,7 +45,8 @@ jobs:
             type=ref,event=tag
             type=ref,suffix=-{{sha}},event=tag
           labels: |
-            org.opencontainers.image.licenses="Foo bar"
+            org.opencontainers.image.description=Test Github CI
+            org.opencontainers.image.licenses=Foo bar
 
       # This step generates the docker tags
       - name: Docker meta (advanced)
