@@ -27,6 +27,8 @@ jobs:
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
+        env:
+          DOCKER_METADATA_PR_HEAD_SHA: 'true' # This ensures {{sha}} is a real commit SHA for type=ref,event=pr
         with:
           images: |
             ${{ github.repository }}
