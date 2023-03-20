@@ -46,7 +46,7 @@ jobs:
         echo 123 > bin/mybin
     - uses: actions/upload-artifact@v3
       with:
-        name: binaries
+        name: binaries-${{ github.sha }}
         path: |
           bin/*
 
@@ -78,9 +78,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/download-artifact@v3
       with:
-        name: binaries
-        path: |
-          bin
+        name: binaries-${{ github.sha }}
     - uses: softprops/action-gh-release@v1
       with:
         name: ${{ github.ref_name }}
