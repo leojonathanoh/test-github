@@ -14,8 +14,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-     - name: GitHub Ref and Tag example
-       run: |
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: GitHub Ref and Tag example
+        run: |
           set -x
           git branch --show-current || true
           git rev-parse --short HEAD || true
