@@ -23,4 +23,4 @@ jobs:
         git rev-parse --short HEAD || true
         git describe --tags --exact-match || true
         git describe --tags --dirty
-        git name-rev --name-only $( git rev-parse --short HEAD )"
+        git name-rev --name-only $( git rev-parse --short HEAD )
