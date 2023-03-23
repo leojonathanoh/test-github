@@ -20,7 +20,11 @@ jobs:
       run: |
         set -x
         git branch --show-current || true
-        git rev-parse --short HEAD || true
+        git symbolic-ref -q --short HEAD || true
+
         git describe --tags --exact-match || true
         git describe --tags --dirty
+
+        git rev-parse --short HEAD || true
+
         git name-rev --name-only $( git rev-parse --short HEAD )
