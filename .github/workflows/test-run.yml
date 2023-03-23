@@ -1,0 +1,21 @@
+name: test-run
+
+on:
+  push:
+    branches:
+    - '**'
+    tags:
+    - '**'
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  github-ref-and-tag-example:
+    runs-on: ubuntu-latest
+    steps:
+     - name: GitHub Ref and Tag example
+       run: |
+         echo 1
+         zzz
+         echo 2
