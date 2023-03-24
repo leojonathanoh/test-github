@@ -53,19 +53,42 @@ jobs:
         path: |
           binaries.tar
 
-  # update-draft-release:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # Drafts your next Release notes as Pull Requests are merged into "master"
-  #     - id: release-drafter
-  #       uses: release-drafter/release-drafter@v5
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     - run: |
-  #         echo "${{ steps.release-drafter.outputs.body }}"
+  update-draft-release:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+    # Drafts your next Release notes as Pull Requests are merged into "master"
+    - id: release-drafter
+      uses: release-drafter/release-drafter@v5
+      with:
+        config-name: release-drafter.yml
+        publish: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: |
+        echo "${{ steps.release-drafter.outputs.body }}"
+    # Ensure the same binaries are used from the build job
+    - name: Download binaries
+      uses: actions/download-artifact@v3
+      with:
+        name: binaries-${{ github.sha }}
+    - name: Untar binaries
+      run: |
+        tar -xvf binaries.tar
+    # Upload binaries to draft
+    - uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        id: ${{ steps.release-drafter.outputs.id }}
+        name: ${{ steps.release-drafter.outputs.name }}
+        tag_name: ${{ steps.release-drafter.outputs.tag_name }}
+        body: ${{ steps.release-drafter.outputs.body }}
+        files: |
+          bin/*
 
   release:
     needs: [build]
+    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
     # Drafts your next Release notes as Pull Requests are merged into "master"
@@ -86,12 +109,13 @@ jobs:
     - name: Untar binaries
       run: |
         tar -xvf binaries.tar
+    # Upload binaries and publish
     - uses: softprops/action-gh-release@v1
       with:
+        draft: false
         id: ${{ steps.release-drafter.outputs.id }}
-        draft: ${{ ! startsWith(github.ref, 'refs/tags/') }}
-        name: ${{ github.ref_name }}
-        tag_name: ${{ github.ref_name }}
+        name: ${{ steps.release-drafter.outputs.name }}
+        tag_name: ${{ steps.release-drafter.outputs.tag_name }}
         body: ${{ steps.release-drafter.outputs.body }}
         files: |
           bin/*
