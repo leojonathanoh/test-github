@@ -45,7 +45,7 @@ jobs:
         mkdir -p bin
         echo 123 > bin/mybin
         SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
-        echo 123-$SHA > bin/mybin
+        echo 123 > bin/mybin_$SHA
     - name: Tar binaries
       run: |
         tar -cvf binaries.tar bin
