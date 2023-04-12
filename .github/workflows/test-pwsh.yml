@@ -16,7 +16,7 @@ jobs:
     steps:
     - run: |
         pwsh -version
-    - name: prep
+    - name: Prep
       run: |
         # Get 'ref-name' from 'refs/heads/ref-name'
         REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
@@ -24,9 +24,11 @@ jobs:
         # Strip of 'v' prefix from tag
         MODULE_VERSION=$( echo "${REF}" | sed 's/^v*//' )
 
+        # Pass variables to next step
         echo "REF=$REF" >> $GITHUB_ENV
         echo "MODULE_VERSION=$MODULE_VERSION" >> $GITHUB_ENV
-    - env:
+    - name: Publish
+      env:
         REF: ${{ env.REF }}
         MODULE_VERSION: ${{ env.MODULE_VERSION }}
       run: |
