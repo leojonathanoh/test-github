@@ -75,7 +75,6 @@ jobs:
       - name: Get first tag
         run: |
           set -eux
-          echo "${{ steps.meta.outputs.tags }}"
           echo "${{ steps.meta.outputs.tags }}" | head -n1
           echo "$DOCKER_METADATA_OUTPUT_TAGS" | head -n1
 
