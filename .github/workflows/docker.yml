@@ -73,7 +73,7 @@ jobs:
             type=semver,pattern=v{{major}}.{{minor}}.{{patch}},suffix=-{{sha}}
 
       - name: Get first tag
-        run:
+        run: |
           set -eux
           echo "$DOCKER_METADATA_OUTPUT_TAGS" | head -n1
 
