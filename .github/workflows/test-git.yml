@@ -29,3 +29,5 @@ jobs:
         git rev-parse --short HEAD || true
 
         git name-rev --name-only $( git rev-parse --short HEAD )
+
+        echo $GITHUB_HEAD_REF
