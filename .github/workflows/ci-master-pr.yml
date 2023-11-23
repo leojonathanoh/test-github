@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
+        exit 1
         echo "VAR1=VALUE1" >> $GITHUB_ENV
     - run: |
         echo "env.VAR1: ${{ env.VAR1 }}"
