@@ -1,4 +1,4 @@
-name: test-pwsh
+name: test-psgallery
 
 on:
   push:
@@ -11,8 +11,10 @@ on:
     - master
 
 jobs:
-  test:
+  test-publish:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/powershell:6.0.4-ubuntu-16.04
     steps:
     - run: |
         pwsh -version
