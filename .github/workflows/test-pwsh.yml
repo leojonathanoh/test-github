@@ -27,6 +27,10 @@ jobs:
       shell: powershell
       run: |
         Get-InstalledModule
+    - name: Install Pester 4.10
+      shell: powershell
+      run: |
+        Install-Module Pester -Force -Scope CurrentUser -MinimumVersion 4.10.1 -MaximumVersion 4.10.1 -ErrorAction Stop
 
   test-powershell-5-1-windows-2019:
     runs-on: windows-2022
@@ -44,6 +48,10 @@ jobs:
       shell: powershell
       run: |
         Get-InstalledModule
+    - name: Install Pester 4.10
+      shell: powershell
+      run: |
+        Install-Module Pester -Force -Scope CurrentUser -MinimumVersion 4.10.1 -MaximumVersion 4.10.1 -ErrorAction Stop
 
   ##########
   # Docker #
